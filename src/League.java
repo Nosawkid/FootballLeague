@@ -36,15 +36,14 @@ public class League
         return resArray;
     }
 
-    public String[] rotateArray(String[] resTeams)
+    private void rotateArray(String[] arr)
     {
-        String[] resArray = new String[resTeams.length];
-        resArray[0] = resTeams[resTeams.length - 1]; // Move last element to first
-        for (int i = 1; i < resTeams.length; i++)
+        String lastElement = arr[arr.length - 1];
+        for (int i = arr.length - 1; i > 1; i--)
         {
-            resArray[i] = resTeams[i - 1]; // Shift the rest to the right
+            arr[i] = arr[i - 1];
         }
-        return resArray;
+        arr[1] = lastElement;
     }
 
     public void generateFixture(Team[] teams)
@@ -52,24 +51,22 @@ public class League
         int totalMatches = (teams.length * (teams.length - 1)) / 2;
         Fixture[] fixtures = new Fixture[totalMatches];
         String[] allTeamNames = getAllTeamNames(teams);
-        String anchorTeam = allTeamNames[0];
-        String[] restTeams = getRestTeams(teams);
 
-        int counter = 0;
-        for (int i = 0; i < teams.length - 1; i++)
+        int fixtureCount = 0;
+        int n = teams.length;
+        int numRounds = n - 1;
+
+        for (int round = 0; round < numRounds; round++)
         {
-            fixtures[counter++] = new Fixture(anchorTeam, restTeams[0]);
-
-            for (int j = 1; j < restTeams.length; j += 2)
+            for (int i = 0; i < n / 2; i++)
             {
-                if (j + 1 < restTeams.length)
-                {
-                    fixtures[counter++] = new Fixture(restTeams[j], restTeams[j + 1]);
-                }
+                int j = n - 1 - i;
+                fixtures[fixtureCount++] = new Fixture(allTeamNames[i], allTeamNames[j]);
             }
-            restTeams = rotateArray(restTeams);
+            rotateArray(allTeamNames);
         }
         this.fixtureList = fixtures;
+
     }
 
     public void printAllFixtures()
@@ -77,7 +74,7 @@ public class League
         int gameWeek = 1;
         for (int i = 0; i < fixtureList.length; i++)
         {
-            if (i % 10 == 0)
+            if (i % 19 == 0)
             {
                 System.out.println(" ");
                 System.out.println("ROund: " + gameWeek);
