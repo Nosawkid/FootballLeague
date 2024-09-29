@@ -1,6 +1,6 @@
 # Sports League Simulator
 
-Welcome to the Sports League Simulator! This project simulates a sports league where teams compete against each other.
+Welcome to the Soccer League Simulator! This project simulates a soccer league where teams compete against each other.
 
 ## Features
 

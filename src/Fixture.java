@@ -1,37 +1,37 @@
 class Fixture
 {
-    private String teamOne;
-    private String teamTwo;
+    private Team teamOne;
+    private Team teamTwo;
 
-    public String getTeamOne()
+    public Fixture(Team teamOne, Team teamTwo)
+    {
+        this.teamOne = teamOne;
+        this.teamTwo = teamTwo;
+    }
+
+    public Team getTeamOne()
     {
         return this.teamOne;
     }
 
-    public void setTeamOne(String teamOne)
+    public void setTeamOne(Team teamOne)
     {
         this.teamOne = teamOne;
     }
 
-    public String getTeamTwo()
+    public Team getTeamTwo()
     {
         return this.teamTwo;
     }
 
-    public void setTeamTwo(String teamTwo)
+    public void setTeamTwo(Team teamTwo)
     {
         this.teamTwo = teamTwo;
     }
 
-    public Fixture(String teamOne, String teamTwo)
+    public void printFixture()
     {
-        this.teamOne = teamOne;
-        this.teamTwo = teamTwo;
+        System.out.println(teamOne.getTeamName() + " V/S " + teamTwo.getTeamName());
     }
 
-    public void printTeams()
-    {
-        System.out.println("Team 1: " + this.teamOne);
-        System.out.println("Team 2: " + this.teamTwo);
-    }
 }

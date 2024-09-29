@@ -113,17 +113,24 @@ public class Team
         this.points = points;
     }
 
-    public Fixture[] getTeamFixtures(Fixture[] fixtureList)
+    public Fixture[] getTeamFixture(Fixture[] fixtures)
     {
-        Fixture[] fixtures = new Fixture[19];
+        Fixture[] tempFixtures = new Fixture[fixtures.length];
+        int count = 0;
+
         for (int i = 0; i < fixtures.length; i++)
         {
-            if (fixtureList[i].getTeamOne().equals(teamName) || fixtureList[i].getTeamTwo().equals(teamName))
+            if (fixtures[i].getTeamOne().equals(this) || fixtures[i].getTeamTwo().equals(this))
             {
-                fixtures[i] = fixtureList[i];
+                tempFixtures[count++] = fixtures[i];
             }
         }
-        return fixtures;
-    }
 
+        Fixture[] fixtures2 = new Fixture[count];
+        for (int j = 0; j < fixtures2.length; j++)
+        {
+            fixtures2[j] = tempFixtures[j];
+        }
+        return fixtures2;
+    }
 }
